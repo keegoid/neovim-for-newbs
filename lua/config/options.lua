@@ -1,12 +1,17 @@
 vim.g.mapleader = " "
-vim.g.background = "light"
+vim.g.maplocalleader = " "
 
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
-
+vim.opt.backspace = { "indent", "eol", "start" }
+vim.opt.laststatus = 2
+vim.opt.autoread = true
+vim.opt.autowrite = true
+vim.opt.showcmd = true
+vim.opt.cursorline = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.shiftround = true
+vim.opt.expandtab = true
 vim.opt.swapfile = false
+vim.opt.termguicolors = true
 
--- vim.wo.number = true
-
+vim.wo.number = true
