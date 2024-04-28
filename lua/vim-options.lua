@@ -26,7 +26,7 @@ vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
 vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
 vim.keymap.set("n", "<leader>h", ":nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", { desc = "clear hlsearch" })
-vim.keymap.set("n", "<leader>ll", ":Lazy<CR>", { desc = "LazyVim" })
+vim.keymap.set("n", "<leader>lv", ":Lazy<CR>", { desc = "LazyVim" })
 vim.keymap.set("n", "<leader>lc", ":CheckHealth<CR>", { desc = "check health" })
 vim.keymap.set("n", "<leader>ww", ":call SaveAs()<CR>", { noremap = true, silent = true, desc = "window write" })
 vim.keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "window write and quit" })
