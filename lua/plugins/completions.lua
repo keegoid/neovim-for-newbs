@@ -8,6 +8,14 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
     },
+    -- config = function()
+    --   local ls = require("luasnip")
+    --   local jsregexp = require("jsregexp")
+
+    --   ls.config.set_config({
+    --     parser_nested_assembler = jsregexp.parser_nested_assembler
+    --   })
+    -- end,
   },
   {
     "hrsh7th/nvim-cmp",
