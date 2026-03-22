@@ -6,22 +6,22 @@ return {
       spec = {
         {
           mode = { "n", "v" },
-          { "<leader><tab>", group = "tabs" },
-          { "<leader>b", group = "buffer" },
-          { "<leader>c", group = "code" },
-          { "<leader>f", group = "file/find" },
-          { "<leader>g", group = "git" },
-          { "<leader>gh", group = "hunks" },
-          { "<leader>q", group = "quit/session" },
-          { "<leader>s", group = "search" },
-          { "<leader>u", group = "ui" },
-          { "<leader>w", group = "windows" },
-          { "<leader>x", group = "diagnostics/quickfix" },
-          { "[", group = "prev" },
-          { "]", group = "next" },
-          { "g", group = "goto" },
-          { "gs", group = "surround" },
-          { "z", group = "fold" },
+          -- Window / Write Group
+          { "<leader>w", group = "windows/write" },
+          { "<leader>ww", "<cmd>call SaveAs()<cr>", desc = "Save As" },
+          { "<leader>wq", "<cmd>wq<cr>", desc = "Save & Quit" },
+
+          -- Lazy / System Group
+          { "<leader>l", group = "lazy/lsp" },
+          { "<leader>lv", "<cmd>Lazy<cr>", desc = "Open Lazy UI" },
+          { "<leader>lc", "<cmd>checkhealth<cr>", desc = "Checkhealth" },
+
+          -- Quit / Session Group
+          { "<leader>z", group = "quit/force" },
+          { "<leader>zz", "<cmd>q!<cr>", desc = "Force Quit (!)" },
+
+          -- Search / UI Group
+          { "<leader>h", "<cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><cr>", desc = "Clear Highlight" },
         },
       },
     },
