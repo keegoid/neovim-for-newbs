@@ -17,6 +17,7 @@ vim.cmd [[
 vim.g.mapleader = " "
 
 vim.opt.swapfile = false
+vim.opt.mouse = "a"
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.cursorline = true
