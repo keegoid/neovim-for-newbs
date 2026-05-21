@@ -1,10 +1,10 @@
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = { "nvim-tree/nvim-web-devicons", "EdenEast/nightfox.nvim" },
   config = function()
     require("lualine").setup({
       options = {
-        theme = "catppuccin",
+        theme = "carbonfox",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         globalstatus = true,
