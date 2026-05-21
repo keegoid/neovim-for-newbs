@@ -15,9 +15,15 @@ vim.cmd [[
 ]]
 
 vim.g.mapleader = " "
-vim.g.background = "light"
 
 vim.opt.swapfile = false
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+vim.opt.cursorline = true
+vim.opt.scrolloff = 8
+vim.opt.signcolumn = "yes"
+vim.opt.wrap = false
+vim.opt.clipboard = "unnamedplus"
 
 vim.wo.number = true
 vim.wo.relativenumber = true
