@@ -37,7 +37,7 @@ is the on-ramp.
 ## Installation
 
 ```bash
-git clone https://github.com/keeganmullaney/neovim-for-newbs ~/.config/nvim
+git clone https://github.com/keegoid/neovim-for-newbs ~/.config/nvim
 nvim
 ```
 
