@@ -1,38 +1,27 @@
 # neovim-for-newbs
 
-A Neovim config built for people who are new to Neovim. Every decision
-prioritizes discoverability and ease of use: sane defaults out of the box,
-`<Space>` as leader so keybindings are easy to reach, **which-key** to show
-available commands as you type, and no cryptic Vimscript — everything is plain
-Lua you can read and modify. If Neovim has ever felt overwhelming, this config
-is the on-ramp.
+A Neovim config for people who are new to Neovim but still want to learn the
+real editor. It keeps normal Neovim habits intact, then adds discoverable
+shortcuts, a dashboard, built-in help, sane defaults, and common tools for code,
+files, search, git, tests, and formatting.
 
-## Features
-
-- **Carbonfox** colorscheme — high-contrast dark theme
-- **Lualine** statusline with powerline separators
-- **LSP** via lsp-zero + Mason (auto-installs beginner defaults for Lua, JS/TS, Python, Bash, and JSON)
-- **Treesitter** syntax highlighting with auto-install
-- **Telescope** fuzzy finder for files, grep, and history
-- **Neo-tree** beginner file explorer + **Oil** native directory editor
-- **nvim-cmp** autocompletion with snippets (LuaSnip + friendly-snippets)
-- **Gitsigns** inline git blame and hunk preview
-- **vim-fugitive** Git commands
-- **which-key** keybinding discovery
-- **nvim-autopairs** bracket auto-close
-- **indent-blankline** visual indent guides
-- **todo-comments** highlighted TODO/FIXME/NOTE tags
-- **nvim-tmux-navigation** seamless pane navigation
-- **none-ls** formatting (black, prettier, shfmt, stylua) + markdownlint
-- **vim-test** + vimux test runner
+The main rule: press `<Space>` in Normal mode and pause. which-key will show
+what you can do next.
 
 ## Requirements
 
-- Neovim >= 0.10
+- Neovim >= 0.11
 - Git
-- A [Nerd Font](https://www.nerdfonts.com/) for icons and powerline glyphs
-- Node.js (for prettier, swagger-preview)
-- `cmake` (for telescope-fzf-native)
+- A [Nerd Font](https://www.nerdfonts.com/) for icons
+- `rg` / ripgrep for project text search
+- `cmake` and local build tools for `telescope-fzf-native`
+- Node.js + npm for Swagger preview and JavaScript tooling
+
+Optional but useful:
+
+- `tmux` for the Vimux-backed test runner
+- Formatters: `black`, `prettier`, `shfmt`, `stylua`
+- `markdownlint` if you want markdown diagnostics
 
 ## Installation
 
@@ -41,169 +30,210 @@ git clone https://github.com/keegoid/neovim-for-newbs ~/.config/nvim
 nvim
 ```
 
-Lazy.nvim will bootstrap itself and install all plugins on first launch.
+Lazy.nvim bootstraps itself and installs plugins on first launch.
 
----
+## First Launch
 
-## Getting Started
+You should land on the Alpha dashboard. The dashboard lists common actions with
+visible shortcuts. `SPC` means the spacebar.
 
-### Understanding Vim Modes
+Useful first commands:
 
-Neovim is modal — the same keys do different things depending on the current
-mode. This is the key concept that makes Neovim so powerful once it clicks.
+| Key or command | Action |
+| --- | --- |
+| `<Space>` then pause | Show the available keymap menu |
+| `<Space>a` | Return to the dashboard |
+| `<Space>sH` | Open the built-in beginner help |
+| `<Space>sk` | Show the keymap menu directly |
+| `<Space>sl` | Open Lazy plugin manager |
+| `<Space>sh` | Run `:checkhealth` |
 
-| Mode | How to enter | What it's for |
-|------|-------------|---------------|
-| **Normal** | `Esc` or `jk` | Moving around, running commands. This is home base. |
-| **Insert** | `i` | Typing text like a normal editor |
-| **Visual** | `v` | Selecting text |
-| **Command** | `:` | Running editor commands (save, quit, etc.) |
+Standard Neovim help also works:
 
-> **Tip:** When in doubt, press `Esc` (or `jk`) to get back to Normal mode.
+```vim
+:help neovim-for-newbs
+```
 
-### Your First Moves
+## First Edit
 
 1. Open a file: `nvim myfile.lua`
-2. Press `i` to start typing
-3. Press `jk` or `Esc` to stop typing
-4. Press `Ctrl+S` to save
-5. Press `<Space>` and wait — **which-key** will show all available commands
-6. Run `:NewbsHelp` any time you want the built-in beginner cheat sheet
+2. Press `i` to enter Insert mode and type text.
+3. Press `jk` or `Esc` to return to Normal mode.
+4. Press `Ctrl+S` to save.
+5. Press `<Space>ff` or `Ctrl+P` to find another file.
+6. Press `<Space>qq` to quit.
 
----
+## Modes
 
-## Key Mappings
+Neovim is modal. The same key can do different things depending on mode.
 
-Leader key is `<Space>`. Press `<Space>` in Normal mode and pause — which-key
-will pop up a menu showing every available command.
+| Mode | Enter with | Use it for |
+| --- | --- | --- |
+| Normal | `Esc` or `jk` | Moving, editing, commands. This is home base. |
+| Insert | `i` | Typing text |
+| Visual | `v` | Selecting text |
+| Command | `:` | Running commands like `:w`, `:q`, and `:help` |
 
-### Saving & Quitting
+When in doubt, press `Esc` or `jk` to return to Normal mode.
+
+## Everyday Workflow
+
+### Files And Search
 
 | Key | Action |
-|-----|--------|
-| `Ctrl+S` | Save file (works in Normal and Insert mode) |
-| `<Space>ww` | Save / Save As (prompts for name if new file) |
+| --- | --- |
+| `Ctrl+P` / `<Space>ff` | Find files |
+| `<Space>fr` / `<Space><Space>` | Recent files |
+| `<Space>fg` | Search text across the project |
+| `<Space>fb` | Browse open buffers |
+| `<Space>ft` | Find TODO/FIXME comments |
+
+### Saving And Quitting
+
+| Key | Action |
+| --- | --- |
+| `Ctrl+S` | Save in Normal or Insert mode |
+| `<Space>ww` | Save, prompting for a filename when needed |
 | `<Space>wq` | Save and quit |
 | `<Space>qq` | Quit |
 | `<Space>qf` | Force quit without saving |
 
-### Navigation
-
-| Key | Action |
-|-----|--------|
-| `Ctrl+P` | Find and open any file by name |
-| `<Space>ff` | Find and open any file by name |
-| `<Space><Space>` | Reopen a recently used file |
-| `<Space>fr` | Reopen a recently used file |
-| `<Space>fg` | Search for text across all files (live grep) |
-| `<Space>ef` | Toggle file explorer sidebar |
-| `<Space>eb` | Browse open buffers (tabs) |
-| `<Space>eo` | Open Oil directory editor |
-| `-` | Open Oil for the parent directory |
-| `<C-h/j/k/l>` | Move between splits or tmux panes |
-
 ### Editing
 
 | Key | Action |
-|-----|--------|
-| `jk` | Exit Insert mode (faster than reaching for Esc) |
-| `gc` + motion | Toggle comments (`gcc` = comment current line) |
-| `<Space>li` / `<Space>i` | Auto-format the current file |
-| `<Space>y` | Copy selection to system clipboard |
-| `<Space>p` | Paste from system clipboard |
+| --- | --- |
+| `jk` | Exit Insert mode |
+| `gc` + motion | Toggle comments (`gcc` comments a line) |
+| `<Space>li` / `<Space>i` | Format the current file |
+| `<Space>y` | Copy visual selection to the system clipboard |
+| `<Space>p` | Paste from the system clipboard |
+| `<Space>h` | Clear search highlight |
 
-### LSP (Code Intelligence)
+### Code Intelligence
 
-These work when a language server is active (auto-installs via Mason).
+These work when a language server is active. Mason installs beginner defaults
+for Lua, JavaScript/TypeScript, Python, Bash, and JSON.
 
 | Key | Action |
-|-----|--------|
-| `K` | Show docs for symbol under cursor |
+| --- | --- |
+| `K` / `<Space>lh` | Hover documentation |
 | `gd` / `<Space>ld` | Go to definition |
-| `gr` / `<Space>lr` | Show all references |
-| `<Space>lh` | Show docs for symbol under cursor |
-| `<Space>la` | Code actions (quick fixes, imports, etc.) |
+| `gr` / `<Space>lr` | Find references |
+| `<Space>la` | Code action |
 | `<Space>le` | Show diagnostic under cursor |
 | `<Space>ln` / `<Space>lp` | Next / previous diagnostic |
 | `<Space>ll` | List diagnostics |
 
-### Git
+### Filesystem Tools
+
+This config includes both Neo-tree and Oil because they teach different habits.
 
 | Key | Action |
-|-----|--------|
-| `<Space>gp` | Preview the current git hunk (change) |
-| `<Space>gb` / `<Space>gt` | Toggle inline git blame for current line |
+| --- | --- |
+| `<Space>ef` | Toggle Neo-tree file explorer |
+| `<Space>eb` | Browse open buffers in Neo-tree |
+| `<Space>eg` | Browse git changes in Neo-tree |
+| `<Space>eo` | Open Oil directory editor |
+| `-` | Open Oil for the parent directory |
+| `<Space>so` | Open a safe Oil practice directory |
 
-### Search
+Neo-tree is the familiar sidebar. Oil is a native Neovim directory editor:
+rename a file by editing its line, create a file by adding a line, delete a file
+by deleting its line, then save with `:w` to apply the filesystem changes.
 
-| Key | Action |
-|-----|--------|
-| `/` | Search forward in file |
-| `n` / `N` | Next / previous match |
-| `<Space>h` | Clear search highlight |
-| `<Space>ft` | Find all TODOs/FIXMEs across project |
-
-### Tests
-
-| Key | Action |
-|-----|--------|
-| `<Space>tt` | Run test nearest to cursor |
-| `<Space>tT` | Run all tests in current file |
-| `<Space>ta` | Run entire test suite |
-| `<Space>tl` | Re-run last test |
-
-### System
-
-| Key | Action |
-|-----|--------|
-| `<Space>sl` | Open Lazy plugin manager (install/update/remove) |
-| `<Space>sh` | Run `:checkhealth` (diagnose config issues) |
-| `<Space>sH` | Open the built-in beginner help |
-| `<Space>sk` | Show the which-key keymap menu |
-| `<Space>so` | Open a throwaway Oil practice directory |
-| `<Space>a` | Return to dashboard |
-
----
-
-## Neo-tree vs Oil
-
-This config keeps both, but gives them different jobs:
-
-- **Neo-tree** (`<Space>ef`) is the default beginner file explorer. It behaves
-  like a familiar sidebar: browse folders, open files, inspect buffers, and
-  view git changes.
-- **Oil** (`-` or `<Space>eo`) is the native Neovim file editor. It opens a
-  directory as a normal editable buffer: rename a file by editing its line,
-  create a file by adding a line, delete a file by deleting its line, then
-  save with `:w` to apply the filesystem changes.
-
-Try Oil safely:
+To try Oil safely:
 
 ```vim
 :NewbsOilLab
 ```
 
-Inside Oil, press `g?` for help, `<CR>` to open a file/directory, `-` to go to
-the parent directory, `g.` to show hidden files, `<C-p>` to preview, `:w` to
-apply changes, and `:q!` to discard pending directory edits.
+Inside Oil, press `g?` for help, `<CR>` to open a file or directory, `-` to go
+up, `g.` to show hidden files, `<C-p>` to preview, `:w` to apply changes, and
+`:q!` to discard pending directory edits.
 
-## Built-in Help
+### Git
+
+| Key | Action |
+| --- | --- |
+| `<Space>gp` | Preview the current git hunk |
+| `<Space>gb` / `<Space>gt` | Toggle inline blame for the current line |
+
+### Tests
+
+| Key | Action |
+| --- | --- |
+| `<Space>tt` | Run nearest test |
+| `<Space>tT` | Run tests in the current file |
+| `<Space>ta` | Run the test suite |
+| `<Space>tl` | Re-run the last test |
+| `<Space>tg` | Open the last test output |
+
+### Panes
+
+| Key | Action |
+| --- | --- |
+| `<C-h>` | Move to the left split or tmux pane |
+| `<C-j>` | Move to the lower split or tmux pane |
+| `<C-k>` | Move to the upper split or tmux pane |
+| `<C-l>` | Move to the right split or tmux pane |
+
+## Built-In Help
 
 | Command | Action |
-|---------|--------|
-| `:NewbsHelp` | Open the built-in beginner help |
-| `:NewbsKeys` | Show the which-key keymap menu |
+| --- | --- |
+| `:NewbsHelp` | Open the beginner help page |
+| `:NewbsKeys` | Show the keymap menu |
 | `:NewbsOilLab` | Create/open a throwaway Oil practice directory |
 | `:help neovim-for-newbs` | Open the standard Neovim help page |
 
-## Tips
+## Defaults Worth Knowing
 
-- **Mouse works** — click to move cursor, scroll to scroll, drag to resize splits
-- **Autocompletion** appears automatically while typing; `Enter` accepts, `Esc` dismisses
-- **Brackets auto-close** — type `(` and `)` appears automatically
-- **TODOs are highlighted** — write `-- TODO:` or `-- FIXME:` and they glow
-- **Indent guides** show code structure at a glance
-- **Relative line numbers** make jumping easy: `5j` jumps down 5 lines
+- Mouse support is on.
+- Line numbers and relative line numbers are on.
+- System clipboard integration is on.
+- Persistent undo is on.
+- Search ignores case until you type an uppercase letter.
+- New splits open right and below.
+- Substitutions preview before you confirm them.
+- Brackets auto-close.
+- TODO, FIXME, and NOTE comments are highlighted.
+
+## Plugin Inventory
+
+- **alpha-nvim** dashboard
+- **which-key** keybinding discovery
+- **nightfox** Carbonfox colorscheme
+- **lualine** clean statusline
+- **Telescope** files, grep, buffers, and history
+- **Neo-tree** sidebar file explorer
+- **Oil** editable directory buffers
+- **lsp-zero**, **Mason**, and **nvim-lspconfig** language servers
+- **nvim-cmp** completion with **LuaSnip** snippets
+- **nvim-treesitter** syntax highlighting and indentation
+- **none-ls** formatting with installed external tools
+- **gitsigns** git hunks and blame
+- **vim-fugitive** Git commands
+- **nvim-autopairs** bracket pairs
+- **indent-blankline** indentation guides
+- **todo-comments** highlighted TODO/FIXME/NOTE comments
+- **nvim-tmux-navigation** split/tmux movement
+- **vim-test** + **vimux** test runner
+- **swagger-preview** OpenAPI preview support
+
+## Maintenance
+
+Use `<Space>sl` to open Lazy, then press:
+
+| Lazy key | Action |
+| --- | --- |
+| `U` | Update plugins |
+| `S` | Sync plugins |
+| `C` | Check plugin health |
+| `?` | Lazy help |
+
+Use `<Space>sh` or `:checkhealth` when something feels off. Some health
+warnings are optional language ecosystems; for example, PHP, Composer, or Julia
+warnings only matter if you plan to use those tools.
 
 ## License
 
