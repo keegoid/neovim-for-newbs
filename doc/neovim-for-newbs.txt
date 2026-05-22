@@ -1,0 +1,112 @@
+*neovim-for-newbs.txt*        Beginner help for neovim-for-newbs
+
+==============================================================================
+CONTENTS                                      *neovim-for-newbs*
+
+This config is a small Neovim on-ramp. It keeps standard Neovim motions and
+LSP conventions available, then adds discoverable Space-led commands for common
+beginner workflows.
+
+Press <Space> and pause to see available command groups.
+
+------------------------------------------------------------------------------
+FIRST MOVES                              *neovim-for-newbs-first-moves*
+
+Insert text: >
+  i
+<
+
+Return to Normal mode: >
+  <Esc>
+  jk
+<
+
+Save: >
+  <C-s>
+  <Space>ww
+<
+
+Find a file: >
+  <C-p>
+  <Space>ff
+<
+
+Search project text: >
+  <Space>fg
+<
+
+Return to the dashboard: >
+  <Space>a
+<
+
+------------------------------------------------------------------------------
+COMMAND GROUPS                          *neovim-for-newbs-command-groups*
+
+Find:
+  <Space>ff    find files
+  <Space>fr    recent files
+  <Space>fg    search text
+  <Space>fb    open buffers
+  <Space>ft    TODOs and FIXMEs
+
+Explorer:
+  <Space>ef    Neo-tree file explorer
+  <Space>eb    open buffers
+  <Space>eg    git changes
+  <Space>eo    Oil directory editor
+
+Code:
+  K            hover documentation
+  gd           go to definition
+  gr           references
+  <Space>la    code action
+  <Space>le    show diagnostic under cursor
+  <Space>ln    next diagnostic
+  <Space>lp    previous diagnostic
+  <Space>ll    diagnostics list
+
+System:
+  <Space>sk    show keymaps
+  <Space>sH    open this help
+  <Space>sh    check health
+  <Space>sl    Lazy plugin manager
+  <Space>so    Oil practice lab
+
+------------------------------------------------------------------------------
+NEO-TREE AND OIL                         *neovim-for-newbs-explorers*
+
+Neo-tree is the default beginner file explorer. It behaves like a familiar
+sidebar: browse files, expand folders, and open entries.
+
+Oil is a more Neovim-native file editor. It opens a directory as an editable
+buffer. Rename a file by editing its line, create a file by adding a line,
+delete a file by deleting its line, and write the buffer with :w to apply the
+filesystem changes.
+
+Try Oil safely with: >
+  :NewbsOilLab
+<
+
+Inside Oil:
+  g?       show Oil help
+  <CR>     open file or directory
+  -        parent directory
+  g.       toggle hidden files
+  <C-p>    preview file
+  :w       apply pending file changes
+  :q!      discard pending file changes
+
+------------------------------------------------------------------------------
+HELP                                      *neovim-for-newbs-help*
+
+Open this page: >
+  :NewbsHelp
+  :help neovim-for-newbs
+<
+
+Open the keymap menu: >
+  :NewbsKeys
+<
+
+==============================================================================
+vim:tw=78:ts=8:noet:ft=help:norl:

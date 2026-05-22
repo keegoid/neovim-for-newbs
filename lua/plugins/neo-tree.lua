@@ -7,8 +7,23 @@ return {
     "MunifTanjim/nui.nvim",
   },
   config = function()
-    vim.keymap.set("n", "<leader>ef", ":Neotree filesystem toggle left<CR>", { desc = "explore file" })
-    vim.keymap.set("n", "<leader>eb", ":Neotree buffers toggle float<CR>", { desc = "explore buffer" })
-    vim.keymap.set("n", "<leader>eg", ":Neotree git_status toggle float<CR>", { desc = "explore git" })
+    vim.keymap.set(
+      "n",
+      "<leader>ef",
+      "<cmd>Neotree filesystem toggle left<cr>",
+      { desc = "Toggle file explorer", silent = true }
+    )
+    vim.keymap.set(
+      "n",
+      "<leader>eb",
+      "<cmd>Neotree buffers toggle float<cr>",
+      { desc = "Browse open buffers", silent = true }
+    )
+    vim.keymap.set(
+      "n",
+      "<leader>eg",
+      "<cmd>Neotree git_status toggle float<cr>",
+      { desc = "Browse git changes", silent = true }
+    )
   end,
 }

@@ -11,10 +11,10 @@ is the on-ramp.
 
 - **Carbonfox** colorscheme — high-contrast dark theme
 - **Lualine** statusline with powerline separators
-- **LSP** via lsp-zero + Mason (auto-install language servers)
+- **LSP** via lsp-zero + Mason (auto-installs beginner defaults for Lua, JS/TS, Python, Bash, and JSON)
 - **Treesitter** syntax highlighting with auto-install
 - **Telescope** fuzzy finder for files, grep, and history
-- **Neo-tree** file explorer + **Oil** floating file browser
+- **Neo-tree** beginner file explorer + **Oil** native directory editor
 - **nvim-cmp** autocompletion with snippets (LuaSnip + friendly-snippets)
 - **Gitsigns** inline git blame and hunk preview
 - **vim-fugitive** Git commands
@@ -68,6 +68,7 @@ mode. This is the key concept that makes Neovim so powerful once it clicks.
 3. Press `jk` or `Esc` to stop typing
 4. Press `Ctrl+S` to save
 5. Press `<Space>` and wait — **which-key** will show all available commands
+6. Run `:NewbsHelp` any time you want the built-in beginner cheat sheet
 
 ---
 
@@ -83,18 +84,22 @@ will pop up a menu showing every available command.
 | `Ctrl+S` | Save file (works in Normal and Insert mode) |
 | `<Space>ww` | Save / Save As (prompts for name if new file) |
 | `<Space>wq` | Save and quit |
-| `<Space>zz` | Force quit without saving |
+| `<Space>qq` | Quit |
+| `<Space>qf` | Force quit without saving |
 
 ### Navigation
 
 | Key | Action |
 |-----|--------|
 | `Ctrl+P` | Find and open any file by name |
+| `<Space>ff` | Find and open any file by name |
 | `<Space><Space>` | Reopen a recently used file |
+| `<Space>fr` | Reopen a recently used file |
 | `<Space>fg` | Search for text across all files (live grep) |
 | `<Space>ef` | Toggle file explorer sidebar |
 | `<Space>eb` | Browse open buffers (tabs) |
-| `-` | Open floating file browser in current directory |
+| `<Space>eo` | Open Oil directory editor |
+| `-` | Open Oil for the parent directory |
 | `<C-h/j/k/l>` | Move between splits or tmux panes |
 
 ### Editing
@@ -103,7 +108,7 @@ will pop up a menu showing every available command.
 |-----|--------|
 | `jk` | Exit Insert mode (faster than reaching for Esc) |
 | `gc` + motion | Toggle comments (`gcc` = comment current line) |
-| `<Space>i` | Auto-format the current file |
+| `<Space>li` / `<Space>i` | Auto-format the current file |
 | `<Space>y` | Copy selection to system clipboard |
 | `<Space>p` | Paste from system clipboard |
 
@@ -114,16 +119,20 @@ These work when a language server is active (auto-installs via Mason).
 | Key | Action |
 |-----|--------|
 | `K` | Show docs for symbol under cursor |
-| `<Space>gd` | Go to definition |
-| `<Space>gr` | Show all references |
-| `<Space>ca` | Code actions (quick fixes, imports, etc.) |
+| `gd` / `<Space>ld` | Go to definition |
+| `gr` / `<Space>lr` | Show all references |
+| `<Space>lh` | Show docs for symbol under cursor |
+| `<Space>la` | Code actions (quick fixes, imports, etc.) |
+| `<Space>le` | Show diagnostic under cursor |
+| `<Space>ln` / `<Space>lp` | Next / previous diagnostic |
+| `<Space>ll` | List diagnostics |
 
 ### Git
 
 | Key | Action |
 |-----|--------|
 | `<Space>gp` | Preview the current git hunk (change) |
-| `<Space>gt` | Toggle inline git blame for current line |
+| `<Space>gb` / `<Space>gt` | Toggle inline git blame for current line |
 
 ### Search
 
@@ -147,11 +156,45 @@ These work when a language server is active (auto-installs via Mason).
 
 | Key | Action |
 |-----|--------|
-| `<Space>lv` | Open Lazy plugin manager (install/update/remove) |
-| `<Space>lc` | Run `:checkhealth` (diagnose config issues) |
+| `<Space>sl` | Open Lazy plugin manager (install/update/remove) |
+| `<Space>sh` | Run `:checkhealth` (diagnose config issues) |
+| `<Space>sH` | Open the built-in beginner help |
+| `<Space>sk` | Show the which-key keymap menu |
+| `<Space>so` | Open a throwaway Oil practice directory |
 | `<Space>a` | Return to dashboard |
 
 ---
+
+## Neo-tree vs Oil
+
+This config keeps both, but gives them different jobs:
+
+- **Neo-tree** (`<Space>ef`) is the default beginner file explorer. It behaves
+  like a familiar sidebar: browse folders, open files, inspect buffers, and
+  view git changes.
+- **Oil** (`-` or `<Space>eo`) is the native Neovim file editor. It opens a
+  directory as a normal editable buffer: rename a file by editing its line,
+  create a file by adding a line, delete a file by deleting its line, then
+  save with `:w` to apply the filesystem changes.
+
+Try Oil safely:
+
+```vim
+:NewbsOilLab
+```
+
+Inside Oil, press `g?` for help, `<CR>` to open a file/directory, `-` to go to
+the parent directory, `g.` to show hidden files, `<C-p>` to preview, `:w` to
+apply changes, and `:q!` to discard pending directory edits.
+
+## Built-in Help
+
+| Command | Action |
+|---------|--------|
+| `:NewbsHelp` | Open the built-in beginner help |
+| `:NewbsKeys` | Show the which-key keymap menu |
+| `:NewbsOilLab` | Create/open a throwaway Oil practice directory |
+| `:help neovim-for-newbs` | Open the standard Neovim help page |
 
 ## Tips
 

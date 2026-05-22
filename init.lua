@@ -13,4 +13,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require("vim-options")
 require("keymaps")
-require("lazy").setup("plugins")
+require("newbs.help").setup()
+require("lazy").setup("plugins", {
+  rocks = {
+    enabled = false,
+  },
+})

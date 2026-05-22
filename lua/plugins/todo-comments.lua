@@ -4,6 +4,6 @@ return {
   event = "BufReadPost",
   config = function()
     require("todo-comments").setup({})
-    vim.keymap.set("n", "<leader>ft", ":TodoTelescope<CR>", { desc = "Find TODOs" })
+    vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find TODOs", silent = true })
   end,
 }
